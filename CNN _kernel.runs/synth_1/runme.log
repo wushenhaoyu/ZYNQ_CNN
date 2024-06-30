@@ -1,0 +1,103 @@
+
+*** Running vivado
+    with args -log test.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source test.tcl
+
+
+****** Vivado v2018.3 (64-bit)
+  **** SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+  **** IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+    ** Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+
+source test.tcl -notrace
+Command: synth_design -top test -part xc7z020clg400-2
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
+INFO: Launching helper process for spawning children vivado processes
+INFO: Helper process launched with PID 64652 
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 468.770 ; gain = 95.664
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'test' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/test.v:23]
+INFO: [Synth 8-6157] synthesizing module 'image_input' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/image_input.v:23]
+	Parameter pic_size bound to: 11'b00000100000 
+INFO: [Synth 8-6157] synthesizing module 'image' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/image_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image' (1#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/image_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'image_input' (2#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/image_input.v:23]
+INFO: [Synth 8-6157] synthesizing module 'conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:23]
+	Parameter INPUT_SIZE bound to: 6'b100000 
+	Parameter WINDOW_SIZE bound to: 6'b000101 
+	Parameter conv_w_0_0 bound to: 16'b0000000000000010 
+	Parameter conv_w_0_1 bound to: 16'b0000000000000100 
+	Parameter conv_w_0_2 bound to: 16'b0000000000000011 
+	Parameter conv_w_0_3 bound to: 16'b0000000000000001 
+	Parameter conv_w_0_4 bound to: 16'b0000000000000101 
+	Parameter conv_w_1_0 bound to: 16'b0000000000000111 
+	Parameter conv_w_1_1 bound to: 16'b0000000000000100 
+	Parameter conv_w_1_2 bound to: 16'b0000000000000001 
+	Parameter conv_w_1_3 bound to: 16'b0000000000000001 
+	Parameter conv_w_1_4 bound to: 16'b0000000000000110 
+	Parameter conv_w_2_0 bound to: 16'b0000000000000100 
+	Parameter conv_w_2_1 bound to: 16'b0000000000000101 
+	Parameter conv_w_2_2 bound to: 16'b0000000000000111 
+	Parameter conv_w_2_3 bound to: 16'b0000000000000011 
+	Parameter conv_w_2_4 bound to: 16'b0000000000000001 
+	Parameter conv_w_3_0 bound to: 16'b0000000000000010 
+	Parameter conv_w_3_1 bound to: 16'b0000000000000101 
+	Parameter conv_w_3_2 bound to: 16'b0000000000000101 
+	Parameter conv_w_3_3 bound to: 16'b0000000000000110 
+	Parameter conv_w_3_4 bound to: 16'b0000000000000000 
+	Parameter conv_w_4_0 bound to: 16'b0000000000000001 
+	Parameter conv_w_4_1 bound to: 16'b0000000000000111 
+	Parameter conv_w_4_2 bound to: 16'b0000000000000111 
+	Parameter conv_w_4_3 bound to: 16'b0000000000001000 
+	Parameter conv_w_4_4 bound to: 16'b0000000000000101 
+	Parameter conv_b bound to: 16'b0000000000000011 
+INFO: [Synth 8-6157] synthesizing module 'conv_kernel_line' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/conv_kernel_line_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'conv_kernel_line' (3#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/conv_kernel_line_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/mult_conv_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'mult_conv' (4#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/mult_conv_stub.v:6]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:271]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:278]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:285]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:292]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:299]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:307]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:314]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:321]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:328]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:335]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:343]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:350]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:357]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:364]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:371]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:379]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:386]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:393]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:400]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:407]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:415]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:422]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:429]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:436]
+WARNING: [Synth 8-689] width (24) of port connection 'P' does not match port width (32) of module 'mult_conv' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:443]
+INFO: [Synth 8-6155] done synthesizing module 'conv' (5#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v:23]
+INFO: [Synth 8-6157] synthesizing module 'average_pooling' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/average_pooling.v:23]
+	Parameter INPUT_SIZE bound to: 28 - type: integer 
+	Parameter WINDOW_SIZE bound to: 2 - type: integer 
+	Parameter INPUT_DATA_SIZE bound to: 33 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'average_pooling_kernel_line' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/average_pooling_kernel_line_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'average_pooling_kernel_line' (6#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/.Xil/Vivado-20588-wushen/realtime/average_pooling_kernel_line_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'average_pooling' (7#1) [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/average_pooling.v:23]
+ERROR: [Synth 8-448] named port connection 'out_valid' does not exist for instance 'pooling1' of module 'average_pooling' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/test.v:54]
+ERROR: [Synth 8-6156] failed synthesizing module 'test' [D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/test.v:23]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 525.215 ; gain = 152.109
+---------------------------------------------------------------------------------
+RTL Elaboration failed
+INFO: [Common 17-83] Releasing license: Synthesis
+17 Infos, 25 Warnings, 0 Critical Warnings and 3 Errors encountered.
+synth_design failed
+ERROR: [Common 17-69] Command failed: Synthesis failed - please see the console or run log file for details
+INFO: [Common 17-206] Exiting Vivado at Sat Jun 29 22:08:06 2024...

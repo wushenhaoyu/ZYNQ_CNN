@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../CNN _kernel.srcs/sources_1/ip/average_pooling_kernel_line/sim/average_pooling_kernel_line.vhd" \
+"../../../../CNN _kernel.srcs/sources_1/ip/mult_conv/sim/mult_conv.vhd" \
+"../../../../CNN _kernel.srcs/sources_1/ip/conv_kernel_line/sim/conv_kernel_line.vhd" \
+
+# Do not sort compile order
+nosort

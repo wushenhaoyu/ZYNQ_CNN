@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Sun Jun 30 09:58:50 2024
+# Process ID: 30764
+# Current directory: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/average_pooling_kernel_line_synth_1
+# Command line: vivado.exe -log average_pooling_kernel_line.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source average_pooling_kernel_line.tcl
+# Log file: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/average_pooling_kernel_line_synth_1/average_pooling_kernel_line.vds
+# Journal file: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/average_pooling_kernel_line_synth_1\vivado.jou
+#-----------------------------------------------------------
+source average_pooling_kernel_line.tcl -notrace
