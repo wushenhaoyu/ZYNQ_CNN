@@ -32,6 +32,7 @@ set_property ip_output_repo {d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.cache/
 set_property ip_cache_permissions {read write} [current_project]
 add_files {{D:/data/data/24/ZYNQ/CNN _kernel/output.coe}}
 read_verilog -library xil_defaultlib {
+  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/Relu.v}
   {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/average_pooling.v}
   {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v}
   {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/image_input.v}
