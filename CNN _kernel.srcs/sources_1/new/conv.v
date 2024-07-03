@@ -40,7 +40,7 @@ module conv#(
     input                                           input_valid,
     input signed        [DATA_WIDTH - 1:0]          input_data,
     output reg                                      out_valid,
-    output reg  signed  [DATA_WIDTH * 2:0]          out_data
+    output reg  signed  [DATA_WIDTH - 1:0]          out_data
 );
 
     wire  signed     [DATA_WIDTH - 1:0]        row1_out                                                           ;

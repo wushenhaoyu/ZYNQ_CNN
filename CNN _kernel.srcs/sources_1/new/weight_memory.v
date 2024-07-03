@@ -29,12 +29,8 @@ module weight_memory#(
     parameter WEIGHT_FILE               = "w_1_15.mif"
 )(
     input                                               clk                     ,
-    input                                               w_en                    ,
-    input                                               r_en                    ,
-    input         [ADDRESS_WIDTH - 1 : 0]               w_address               ,
-    input         [ADDRESS_WIDTH - 1 : 0]               r_address               ,
-    input         [DATA_WIDTH - 1 : 0]                  w_input                 ,
-    output reg    [DATA_WIDTH - 1 : 0]                  w_output
+    input         [ADDRESS_WIDTH - 1 : 0]               address                 ,
+    output        [DATA_WIDTH - 1 : 0]                  output_data
     );
 
     reg [DATA_WIDTH - 1 : 0] memory [NUM_WEIGHT - 1 : 0];
@@ -45,21 +41,8 @@ module weight_memory#(
 	        $readmemb(WEIGHT_FILE, memory);
 	    end
 	`else
-		always @(posedge clk)
-		begin
-			if (w_en)
-			begin
-				memory[w_address] <= w_input;
-			end
-		end 
+		assign output_data = memory[address];
     `endif
 
-    always @(posedge clk)
-    begin
-        if(r_en)
-        begin
-            w_output <= memory[r_address];
-        end
-    end
 
 endmodule
