@@ -24,7 +24,7 @@ module normailze#(
     parameter DATA_WIDTH = 16,
     parameter WEIGHT_INT_WIDTH = 4
 )(
-    input       [2 * DATA_WIDTH-1:0]      x,
+    input       [DATA_WIDTH-1:0]      x,
     output      [DATA_WIDTH-1:0]          y 
     );
 

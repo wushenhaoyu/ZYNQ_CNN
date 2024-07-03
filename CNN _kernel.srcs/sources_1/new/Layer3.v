@@ -3,6 +3,28 @@
 // Company: 
 // Engineer: 
 // 
+// Create Date: 2024/07/03 22:17:57
+// Design Name: 
+// Module Name: Layer3
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
 // Create Date: 2024/07/03 11:39:15
 // Design Name: 
 // Module Name: Layer1
@@ -20,8 +42,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Layer1#(
-    parameter LAYER_NO = 1              ,
+module Layer3#(
+    parameter LAYER_NO = 3              ,
     parameter INPUT_NUM = 1             ,
     parameter OUTPUT_NUM = 6            ,
     parameter NUM_WEIGHT = 25           ,
@@ -34,7 +56,7 @@ module Layer1#(
 )(
         input clk,
         input rst_n,
-        input signed        [DATA_WIDTH - 1:0]              input_data          ,
+        input signed   [DATA_WIDTH  * OUTPUT_NUM - 1 :0]    input_data          ,
         input                                               input_valid         ,
         output                                              out_valid           ,
         output signed  [DATA_WIDTH  * OUTPUT_NUM - 1 :0]    out_data            
@@ -157,3 +179,4 @@ module Layer1#(
     );
     
 endmodule
+

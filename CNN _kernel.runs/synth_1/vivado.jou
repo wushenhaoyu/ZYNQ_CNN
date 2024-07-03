@@ -2,11 +2,11 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:38:27 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Sun Jun 30 22:51:11 2024
-# Process ID: 10528
+# Start of session at: Wed Jul  3 22:16:25 2024
+# Process ID: 48992
 # Current directory: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1
-# Command line: vivado.exe -log test.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source test.tcl
-# Log file: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/test.vds
+# Command line: vivado.exe -log Layer2.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Layer2.tcl
+# Log file: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1/Layer2.vds
 # Journal file: D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.runs/synth_1\vivado.jou
 #-----------------------------------------------------------
-source test.tcl -notrace
+source Layer2.tcl -notrace

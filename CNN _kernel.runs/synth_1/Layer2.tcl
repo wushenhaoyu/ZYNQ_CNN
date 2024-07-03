@@ -17,6 +17,8 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_msg_config -id {Synth 8-256} -limit 10000
+set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7z020clg400-2
 
 set_param project.singleFileAddWarning.threshold 0
@@ -25,28 +27,15 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.cache/wt} [current_project]
 set_property parent.project_path {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.xpr} [current_project]
-set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property ip_output_repo {d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.cache/ip} [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 add_files {{D:/data/data/24/ZYNQ/CNN _kernel/output.coe}}
 read_verilog -library xil_defaultlib {
-  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/Relu.v}
   {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/average_pooling.v}
-  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv.v}
-  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/image_input.v}
-  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/test.v}
+  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/Layer2.v}
 }
-read_ip -quiet {{D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/image/image.xci}}
-set_property used_in_implementation false [get_files -all {{d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/image/image_ooc.xdc}}]
-
-read_ip -quiet {{D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/conv_kernel_line/conv_kernel_line.xci}}
-set_property used_in_implementation false [get_files -all {{d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/conv_kernel_line/conv_kernel_line_ooc.xdc}}]
-
-read_ip -quiet {{D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/mult_conv/mult_conv.xci}}
-set_property used_in_implementation false [get_files -all {{d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/mult_conv/mult_conv_ooc.xdc}}]
-
 read_ip -quiet {{D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/average_pooling_kernel_line/average_pooling_kernel_line.xci}}
 set_property used_in_implementation false [get_files -all {{d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/average_pooling_kernel_line/average_pooling_kernel_line_ooc.xdc}}]
 
@@ -61,12 +50,12 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top test -part xc7z020clg400-2
+synth_design -top Layer2 -part xc7z020clg400-2
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef test.dcp
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file test_utilization_synth.rpt -pb test_utilization_synth.pb"
+write_checkpoint -force -noxdef Layer2.dcp
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file Layer2_utilization_synth.rpt -pb Layer2_utilization_synth.pb"
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

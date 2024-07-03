@@ -39,7 +39,7 @@ module conv#(
     input                                           rst_n,
     input                                           input_valid,
     input signed        [DATA_WIDTH - 1:0]          input_data,
-    output reg                                      out_valid,
+    output                                          out_valid,
     output reg  signed  [DATA_WIDTH - 1:0]          out_data
 );
 
@@ -59,6 +59,7 @@ module conv#(
     reg              [2:0]                     cnt_stride                                                         ;
     reg              [DATA_WIDTH - 1:0]        bias                                                               ;
     reg                                        addr=0                                                             ;
+    reg                                        out_valid_                                                         ;
     always@(posedge clk or negedge rst_n)
     if(!rst_n)
         cnt <= 1'b0;
@@ -203,11 +204,11 @@ always@(posedge clk or negedge rst_n)
 
 always@(posedge clk or negedge rst_n)
     if(!rst_n)
-        out_valid <= 1'b0;
+        out_valid_ <= 1'b0;
     else if(out_valid_flag)
-        out_valid <= 1'b1;
-    else if(out_valid)
-        out_valid <= 1'b0;
+        out_valid_ <= 1'b1;
+    else if(out_valid_)
+        out_valid_ <= 1'b0;
 
 always @ (posedge clk or negedge rst_n)begin
     if (!rst_n)
@@ -218,6 +219,7 @@ always @ (posedge clk or negedge rst_n)begin
         out_valid_flag <= 1'b0;
 end
 
+assign out_valid = out_valid_;
 assign out_data_reg = out_reg[0] + out_reg[1] + out_reg[2] + out_reg[3] + out_reg[4] + out_reg[5] + out_reg[6] + out_reg[7] + out_reg[8] + out_reg[9] + out_reg[10] + out_reg[11] + out_reg[12] + out_reg[13] + out_reg[14] + out_reg[15] + out_reg[16] + out_reg[17] + out_reg[18] + out_reg[19] + out_reg[20] + out_reg[21] + out_reg[22] + out_reg[23] + out_reg[24] + bias;
 
 reg [DATA_WIDTH - 1 : 0] memory [NUM_WEIGHT - 1 : 0];

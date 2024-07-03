@@ -23,7 +23,7 @@
 module average_pooling#(
     parameter INPUT_WIDTH = 28,
     parameter WINDOW_SIZE = 2,
-    parameter DATA_SIZE = 33,
+    parameter DATA_SIZE = 16,
     parameter STRIDE = 2,
     parameter WEIGHT_INT_WIDTH = 1      
 )(
@@ -118,7 +118,7 @@ always@(posedge clk or negedge rst_n)begin
     if(!rst_n)
         out_data <= 33'd0;
     else if(out_valid_flag && stride_flag)
-        out_data<= out_data_reg_;
+        out_data<= out_data_reg;
     else
         out_data <= 33'b0;
 end
@@ -136,13 +136,6 @@ end
 
 assign out_data_reg = (windows_pooling[0] + windows_pooling[1] + windows_pooling[2] + windows_pooling[3]) >> 2;
 
-normailze #(
-    .DATA_SIZE(DATA_SIZE),
-    .WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH)
-)normailze_inst(
-    .x(out_data_reg),
-    .y(out_data_reg_)
-);
 
 
 average_pooling_kernel_line line1 (
