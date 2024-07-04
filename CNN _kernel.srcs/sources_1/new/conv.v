@@ -47,8 +47,7 @@ module conv#(
     wire  signed     [DATA_WIDTH - 1:0]        row2_out                                                           ;
     wire  signed     [DATA_WIDTH - 1:0]        row3_out                                                           ;
     wire  signed     [DATA_WIDTH - 1:0]        row4_out                                                           ;
-    wire  signed     [DATA_WIDTH * 2:0]        out_data_reg_                                                      ;
-    wire  signed     [DATA_WIDTH * 2:0]        out_data_reg                                                       ;
+    wire  signed     [DATA_WIDTH * 2 - 1:0]        out_data_reg                                                   ;
     wire  signed     [DATA_WIDTH + 7:0]        out_reg           [WINDOW_WIDTH * WINDOW_WIDTH - 1 :0]             ;
     reg   signed     [DATA_WIDTH - 1:0]        windows_conv      [ WINDOW_WIDTH * WINDOW_WIDTH - 1 :0]            ;
     reg              [16:0]                    cnt                                                                ;
@@ -198,7 +197,7 @@ always@(posedge clk or negedge rst_n)
     if(!rst_n)
         out_data <= 33'd0;
     else if(out_valid_flag)
-        out_data<= out_data_reg_;
+        out_data<= out_data_reg;
     else
         out_data <= 33'b0;
 
@@ -241,11 +240,6 @@ reg [DATA_WIDTH - 1 : 0] memory [NUM_WEIGHT - 1 : 0];
     end
 `endif
 
-Relu#(.DATA_WIDTH(DATA_WIDTH),.WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH))
-(
-    .x(out_data_reg),
-    .y(out_data_reg_)
-);
 
 
 

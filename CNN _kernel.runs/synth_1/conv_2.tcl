@@ -17,8 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_msg_config -id {Synth 8-256} -limit 10000
-set_msg_config -id {Synth 8-638} -limit 10000
 create_project -in_memory -part xc7z020clg400-2
 
 set_param project.singleFileAddWarning.threshold 0
@@ -33,11 +31,11 @@ set_property ip_output_repo {d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.cache/
 set_property ip_cache_permissions {read write} [current_project]
 add_files {{D:/data/data/24/ZYNQ/CNN _kernel/output.coe}}
 read_verilog -library xil_defaultlib {
-  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/average_pooling.v}
-  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/Layer2.v}
+  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/mult_2.v}
+  {D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/new/conv_2.v}
 }
-read_ip -quiet {{D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/average_pooling_kernel_line/average_pooling_kernel_line.xci}}
-set_property used_in_implementation false [get_files -all {{d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/average_pooling_kernel_line/average_pooling_kernel_line_ooc.xdc}}]
+read_ip -quiet {{D:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/conv_kernel_line/conv_kernel_line.xci}}
+set_property used_in_implementation false [get_files -all {{d:/data/data/24/ZYNQ/CNN _kernel/CNN _kernel.srcs/sources_1/ip/conv_kernel_line/conv_kernel_line_ooc.xdc}}]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -50,12 +48,12 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top Layer2 -part xc7z020clg400-2
+synth_design -top conv_2 -part xc7z020clg400-2
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef Layer2.dcp
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file Layer2_utilization_synth.rpt -pb Layer2_utilization_synth.pb"
+write_checkpoint -force -noxdef conv_2.dcp
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file conv_2_utilization_synth.rpt -pb conv_2_utilization_synth.pb"
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

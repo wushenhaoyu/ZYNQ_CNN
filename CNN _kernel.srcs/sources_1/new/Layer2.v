@@ -17,9 +17,9 @@ module Layer2#(
     
 
     average_pooling#(
-    .INPUT_WIDTH      (DATA_WIDTH  * INPUT_NUM) ,
+    .INPUT_WIDTH      (INPUT_WIDTH) ,
     .WINDOW_SIZE      (WINDOW_WIDTH)             ,
-    .DATA_SIZE        (DATA_WIDTH)              ,
+    .DATA_SIZE        (DATA_WIDTH * INPUT_NUM)              ,
     .STRIDE           (STRIDE)                                              
     )average_pooling(
     .clk            (clk)                   ,

@@ -45,7 +45,7 @@
 module Layer3#(
     parameter LAYER_NO = 3              ,
     parameter INPUT_NUM = 1             ,
-    parameter OUTPUT_NUM = 6            ,
+    parameter OUTPUT_NUM = 16            ,
     parameter NUM_WEIGHT = 25           ,
     parameter WEIGHT_INT_WIDTH = 1      ,
     parameter DATA_WIDTH = 16           ,
@@ -56,127 +56,13 @@ module Layer3#(
 )(
         input clk,
         input rst_n,
-        input signed   [DATA_WIDTH  * OUTPUT_NUM - 1 :0]    input_data          ,
+        input signed   [DATA_WIDTH  * INPUT_NUM - 1 :0]    input_data          ,
         input                                               input_valid         ,
         output                                              out_valid           ,
         output signed  [DATA_WIDTH  * OUTPUT_NUM - 1 :0]    out_data            
     );
 
 
-    conv #(
-        .LAYER_NO                (LAYER_NO),
-        .NUM_WEIGHT              (NUM_WEIGHT),
-        .WEIGHT_INT_WIDTH        (WEIGHT_INT_WIDTH),
-        .DATA_WIDTH              (DATA_WIDTH),
-        .INPUT_WIDTH             (INPUT_WIDTH),
-        .WINDOW_WIDTH            (WINDOW_WIDTH),
-        .STRIDE                  (STRIDE),
-        .ACT_TYPE                (ACT_TYPE),
-        .WEIGHT_FILE             ("./weights/conv1_1_w.txt"),
-        .BIAS_FILE               ("./bias/conv1_1_b.mem")
-    ) conv_1 (
-        .clk                    (clk),
-        .rst_n                  (rst_n),
-        .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
-        .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
-        .out_valid              (out_valid),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH - 1 : 0])
-    );
-    conv #(
-        .LAYER_NO                (LAYER_NO),
-        .NUM_WEIGHT              (NUM_WEIGHT),
-        .WEIGHT_INT_WIDTH        (WEIGHT_INT_WIDTH),
-        .DATA_WIDTH              (DATA_WIDTH),
-        .INPUT_WIDTH             (INPUT_WIDTH),
-        .WINDOW_WIDTH            (WINDOW_WIDTH),
-        .STRIDE                  (STRIDE),
-        .ACT_TYPE                (ACT_TYPE),
-        .WEIGHT_FILE             ("./weights/conv1_2_w.txt"),
-        .BIAS_FILE               ("./bias/conv1_2_b.mem")
-    ) conv_2 (
-        .clk                    (clk),
-        .rst_n                  (rst_n),
-        .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
-        .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
-        .out_valid              (),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH*1 +: DATA_WIDTH])
-    );
-    conv #(
-        .LAYER_NO                (LAYER_NO),
-        .NUM_WEIGHT              (NUM_WEIGHT),
-        .WEIGHT_INT_WIDTH        (WEIGHT_INT_WIDTH),
-        .DATA_WIDTH              (DATA_WIDTH),
-        .INPUT_WIDTH             (INPUT_WIDTH),
-        .WINDOW_WIDTH            (WINDOW_WIDTH),
-        .STRIDE                  (STRIDE),
-        .ACT_TYPE                (ACT_TYPE),
-        .WEIGHT_FILE             ("./weights/conv1_3_w.txt"),
-        .BIAS_FILE               ("./bias/conv1_3_b.mem")
-    ) conv_3 (
-        .clk                    (clk),
-        .rst_n                  (rst_n),
-        .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
-        .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
-        .out_valid              (),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH*2 +: DATA_WIDTH])
-    );
-    conv #(
-        .LAYER_NO                (LAYER_NO),
-        .NUM_WEIGHT              (NUM_WEIGHT),
-        .WEIGHT_INT_WIDTH        (WEIGHT_INT_WIDTH),
-        .DATA_WIDTH              (DATA_WIDTH),
-        .INPUT_WIDTH             (INPUT_WIDTH),
-        .WINDOW_WIDTH            (WINDOW_WIDTH),
-        .STRIDE                  (STRIDE),
-        .ACT_TYPE                (ACT_TYPE),
-        .WEIGHT_FILE             ("./weights/conv1_4_w.txt"),
-        .BIAS_FILE               ("./bias/conv1_4_b.mem")
-    ) conv_4 (
-        .clk                    (clk),
-        .rst_n                  (rst_n),
-        .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
-        .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
-        .out_valid              (),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH*3 +: DATA_WIDTH])
-    );
-    conv #(
-        .LAYER_NO                (LAYER_NO),
-        .NUM_WEIGHT              (NUM_WEIGHT),
-        .WEIGHT_INT_WIDTH        (WEIGHT_INT_WIDTH),
-        .DATA_WIDTH              (DATA_WIDTH),
-        .INPUT_WIDTH             (INPUT_WIDTH),
-        .WINDOW_WIDTH            (WINDOW_WIDTH),
-        .STRIDE                  (STRIDE),
-        .ACT_TYPE                (ACT_TYPE),
-        .WEIGHT_FILE             ("./weights/conv1_5_w.txt"),
-        .BIAS_FILE               ("./bias/conv1_5_b.mem")
-    ) conv_5 (
-        .clk                    (clk),
-        .rst_n                  (rst_n),
-        .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
-        .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
-        .out_valid              (),      
-        .out_data               (out_data[DATA_WIDTH*4 +: DATA_WIDTH])
-    );
-    conv #(
-        .LAYER_NO                (LAYER_NO),
-        .NUM_WEIGHT              (NUM_WEIGHT),
-        .WEIGHT_INT_WIDTH        (WEIGHT_INT_WIDTH),
-        .DATA_WIDTH              (DATA_WIDTH),
-        .INPUT_WIDTH             (INPUT_WIDTH),
-        .WINDOW_WIDTH            (WINDOW_WIDTH),
-        .STRIDE                  (STRIDE),
-        .ACT_TYPE                (ACT_TYPE),
-        .WEIGHT_FILE             ("./weights/conv1_6_w.txt"),
-        .BIAS_FILE               ("./bias/conv1_6_b.mem")
-    ) conv_6 (
-        .clk                    (clk),
-        .rst_n                  (rst_n),
-        .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
-        .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
-        .out_valid              (),      
-        .out_data               (out_data[DATA_WIDTH*5 +: DATA_WIDTH])
-    );
     
 endmodule
 

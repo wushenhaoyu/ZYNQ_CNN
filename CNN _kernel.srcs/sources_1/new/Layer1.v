@@ -40,7 +40,7 @@ module Layer1#(
         output signed  [DATA_WIDTH  * OUTPUT_NUM - 1 :0]    out_data            
     );
 
-
+    wire [DATA_WIDTH  * OUTPUT_NUM - 1 :0] out_data_;
     conv #(
         .LAYER_NO                (LAYER_NO),
         .NUM_WEIGHT              (NUM_WEIGHT),
@@ -58,7 +58,7 @@ module Layer1#(
         .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
         .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
         .out_valid              (out_valid),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH - 1 : 0])
+        .out_data               (out_data_[DATA_WIDTH - 1 : 0])
     );
     conv #(
         .LAYER_NO                (LAYER_NO),
@@ -77,7 +77,7 @@ module Layer1#(
         .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
         .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
         .out_valid              (),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH*1 +: DATA_WIDTH])
+        .out_data               (out_data_[DATA_WIDTH*1 +: DATA_WIDTH])
     );
     conv #(
         .LAYER_NO                (LAYER_NO),
@@ -96,7 +96,7 @@ module Layer1#(
         .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
         .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
         .out_valid              (),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH*2 +: DATA_WIDTH])
+        .out_data               (out_data_[DATA_WIDTH*2 +: DATA_WIDTH])
     );
     conv #(
         .LAYER_NO                (LAYER_NO),
@@ -115,7 +115,7 @@ module Layer1#(
         .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
         .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
         .out_valid              (),      // 分别为每个实例声明或连接out_valid
-        .out_data               (out_data[DATA_WIDTH*3 +: DATA_WIDTH])
+        .out_data               (out_data_[DATA_WIDTH*3 +: DATA_WIDTH])
     );
     conv #(
         .LAYER_NO                (LAYER_NO),
@@ -134,7 +134,7 @@ module Layer1#(
         .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
         .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
         .out_valid              (),      
-        .out_data               (out_data[DATA_WIDTH*4 +: DATA_WIDTH])
+        .out_data               (out_data_[DATA_WIDTH*4 +: DATA_WIDTH])
     );
     conv #(
         .LAYER_NO                (LAYER_NO),
@@ -153,7 +153,18 @@ module Layer1#(
         .input_valid            (input_valid),       // 假设所有实例共享input_valid，根据设计调整
         .input_data             (input_data),        // 同上，根据实际数据流设计可能需要修改
         .out_valid              (),      
-        .out_data               (out_data[DATA_WIDTH*5 +: DATA_WIDTH])
+        .out_data               (out_data_[DATA_WIDTH*5 +: DATA_WIDTH])
     );
+
+    genvar i;
+    generate
+        for (i = 0; i < OUTPUT_NUM; i = i + 1) begin
+            Relu#(.DATA_WIDTH(DATA_WIDTH),.WEIGHT_INT_WIDTH(WEIGHT_INT_WIDTH))
+            (
+                .x(out_data_[DATA_WIDTH*i +: DATA_WIDTH]),
+                .y(out_data[DATA_WIDTH*i +: DATA_WIDTH])
+            );
+        end
+    endgenerate
     
 endmodule
