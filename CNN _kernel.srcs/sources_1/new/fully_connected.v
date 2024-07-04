@@ -24,13 +24,7 @@ module fully_connected#(
         parameter NUM_WEIGHT = 25           ,
         parameter WEIGHT_INT_WIDTH = 1      ,
         parameter DATA_WIDTH = 16           ,
-        parameter INPUT_WIDTH = 8'd32       ,
-        parameter OUTPUT_WIDTH = 8'd32      ,
-        parameter WEIGHT_WIDTH = 8'd8       ,
-        parameter STRIDE = 3'd1             ,
-        parameter ACT_TYPE = "Relu"         ,
-        parameter BIAS_FILE = ""            ,
-        parameter WEIGHT_FILE = ""          
+        parameter ACT_TYPE = "Relu"         
     )
     (
         input                                           clk                         ,
@@ -123,7 +117,7 @@ module fully_connected#(
 
     assign out_reg = output_w * input_data;
 
-    `ifdef pretrained
+   /* `ifdef pretrained
     initial
     begin
         $readmemb(biasFile,biasReg);
@@ -132,7 +126,7 @@ module fully_connected#(
     begin
         bias <= {biasReg[0][DATA_WIDTH-1:0],{DATA_WIDTH{1'b0}}};
     end
-    `endif
+    `endif*/
 
     weight_memory weight_memory(
             .clk(clk)                     ,
