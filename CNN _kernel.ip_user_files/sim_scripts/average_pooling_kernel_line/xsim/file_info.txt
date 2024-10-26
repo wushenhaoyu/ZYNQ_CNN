@@ -1,1 +1,0 @@
-average_pooling_kernel_line.vhd,vhdl,xil_defaultlib,../../../../CNN _kernel.srcs/sources_1/ip/average_pooling_kernel_line/sim/average_pooling_kernel_line.vhd,
